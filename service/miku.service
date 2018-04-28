@@ -1,0 +1,14 @@
+[Unit]
+Description=Singing Miku service
+After=multi-user.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/python /opt/miku/main.py --pid /var/run/miku.pid --log /var/log/miku/miku.log
+Restart=always
+PIDFile=/var/run/miku.pid
+WorkingDirectory=/opt/miku/
+ExecStop=/bin/kill $MAINPID
+
+[Install]
+WantedBy=multi-user.target
