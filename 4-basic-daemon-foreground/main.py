@@ -6,7 +6,7 @@ import argparse
 from miku import SingingMiku
 
 def run(foreground, log_file):
-    singing_miku = SingingMiku(foreground, args.log)
+    singing_miku = SingingMiku(foreground, log_file)
     exit_code = singing_miku.main()
     exit(exit_code)
 
