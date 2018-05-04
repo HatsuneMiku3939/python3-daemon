@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  fluentd:
+    image: miku-fluentd:latest
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+    links:
+      - "elasticsearch"
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.4
+    expose:
+      - 9200
+    ports:
+      - "9200:9200"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:6.2.4
+    links:
+      - "elasticsearch"
+    ports:
+      - "5601:5601"
